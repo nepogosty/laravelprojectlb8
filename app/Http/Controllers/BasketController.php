@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Laptop;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -38,6 +39,7 @@ class BasketController extends Controller
         return view('order');
 
     }
+
     public function empty(){
 
         return view('empty');
@@ -48,14 +50,21 @@ class BasketController extends Controller
         //session()->put('id_order',$id_laptop);
            $id_order=session('id_order');
 
-           if(is_null($id_order)){
-               $order=  Order::create();
-               $idord=$order->id;
-               session(['id_order'=>$idord]);
-           }
-           else{
+        if(is_null($id_order)){
+            $order=  Order::create();
+            $idord=$order->id;
+            session(['id_order'=>$idord]);
+        }
+        else{
             $order=Order::find($id_order);
-            }
+        }
+        // if(is_null($id_order)){
+        //               $order=  Order::create()->id;
+        //               session(['id_order'=>$order->id]);
+        //           }
+        //           else{
+        //            $order=Order::find($id_order);
+        //            }
         if($order->laptops->contains($id_laptop)){
             $pivotRow=$order->laptops()->where('id_laptop',$id_laptop)->first()->pivot;
             $pivotRow->count++;
@@ -64,6 +73,10 @@ class BasketController extends Controller
         }else{
             $order->laptops()->attach($id_laptop);
         }
+        $laptop=Laptop::find($id_laptop);
+        session()->flash('success','Добавлен товар: '.$laptop->name );
+
+
         return redirect()->route('basket');
 
     }
@@ -83,9 +96,29 @@ class BasketController extends Controller
                 $pivotRow->count--;
                 $pivotRow->update();
             }
-            return redirect()->route('basket');
+            $laptop=Laptop::find($id_laptop);
+            session()->flash('warning','Товар удален: '.$laptop->name );
 
+            return redirect()->route('basket');
         }
+    }
+    public function basketaccepted(Request $request){
+        $id_order=session('id_order');
+        if(is_null($id_order)) {
+            return redirect()->route('index');
+        }
+        $order=  Order::find($id_order);
+        $success=$order->saveOrder($request->name, $request->phone, $request->email);
+
+        if($success){
+            session()->flash('success', 'Заказ принят!');
+        }
+        else{
+            session()->flash('warning','Произошла ошибка' );
+        }
+
+        return redirect()->route('index');
+
     }
 }
 

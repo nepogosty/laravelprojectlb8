@@ -4,14 +4,16 @@
         <h1>Все товары</h1>
         <form method="GET" action="http://internet-shop.tmweb.ru">
             <div class="filters row">
-                <div class="col-sm-6 col-md-3">
-                    <label for="price_from">Цена от                    <input type="text" name="price_from" id="price_from" size="6" value="">
+                <div class="col-sm-6 col-md-3 ">
+                    <label cal for="price_from">Цена от
+                        <input  type="text" name="price_from" id="price_from" size="6" value="" >
                     </label>
-                    <label for="price_to">до                    <input type="text" name="price_to" id="price_to" size="6" value="">
+                    <label for="price_to">до
+                        <input type="text" name="price_to" id="price_to" size="6" value="" >
                     </label>
                 </div>
-                <div class="col-sm-2 col-md-2">
-                    <label for="hit">
+                <div class="col-sm-2 col-md-2 form-check">
+                    <label for="hit" >
                         <input type="checkbox" name="hit" id="hit"> Хит                </label>
                 </div>
                 <div class="col-sm-2 col-md-2">
@@ -28,15 +30,15 @@
                 </div>
             </div>
         </form>
-        <div class="row">
+        <div class="row pb-5">
             @foreach($laptops as $laptop)
                 @include('card',compact('laptop'))
             @endforeach
 
 
         </div>
-        <nav>
-            <ul class="pagination">
+        <nav class="">
+            <ul class="pagination justify-content-center ">
 
                 <li class="page-item disabled" aria-disabled="true" aria-label="pagination.previous">
                     <span class="page-link" aria-hidden="true">‹</span>

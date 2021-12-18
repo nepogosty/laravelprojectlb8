@@ -9,7 +9,7 @@
                 <div class="container">
                     <div class="row justify-content-center">
                         <p>Общая стоимость: <b>{{$order->fullPrice()}} ₽ </b></p>
-                        <form action="http://internet-shop.tmweb.ru/basket/place" method="POST">
+                        <form action="{{route('basket-accepted')}}" method="POST">
                             <div>
                                 <p>Укажите свои имя и номер телефона, чтобы наш менеджер мог с вами связаться:</p>
 
@@ -38,7 +38,11 @@
                                     </div>
                                 </div>
                                 <br>
-                                <input type="hidden" name="_token" value="zny4Qvyy1UeHqOAtZ3w3kojxlFrjwYK03dK0Rzpa">                    <input type="submit" class="btn btn-success" value="Подтвердите заказ">
+
+                                <input type="hidden" name="_token" value="zny4Qvyy1UeHqOAtZ3w3kojxlFrjwYK03dK0Rzpa">
+                                <br>
+                                @csrf
+                                <input type="submit" class="btn btn-success" value="Подтвердите заказ">
                             </div>
                         </form>
                     </div>
