@@ -8,5 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Reviews extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_reviews';
+    protected $table ='reviews';
 
+    public function laptops(){
+        return $this->belongsTo(Laptop::class, 'id_gc');
+    }
 }

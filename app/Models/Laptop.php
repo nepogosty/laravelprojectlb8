@@ -10,8 +10,9 @@ class Laptop extends Model
     protected $primaryKey = 'id';
     protected $table ='laptops';
     use HasFactory;
+
     public function laptopsReviews(){
-        return $this->hasMany('App\Models\Reviews');
+        return $this->hasMany(Reviews::class,'id_laptop');
     }
 
     public function getGC(){
@@ -19,11 +20,14 @@ class Laptop extends Model
 
     }
     public function gc(){
-        return $this->belongsTo(GraphicCard::class);
+        return $this->belongsTo(GraphicCard::class, 'id_gc');
     }
     public function firm()
     {
         return $this->belongsTo(Firm::class,'id_firm');
+    }
+    public function cpu(){
+        return $this->belongsTo(Cpu::class, 'id_cpu');
     }
 
     public function orders(){

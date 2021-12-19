@@ -20,12 +20,13 @@
 
                 <button type="submit" class="btn btn-primary"
                         role="button">В корзину</button>
-                <a href="{{route('product',$laptop->firm->name,$laptop->name)}}" class="btn btn-default" role="button">Подробнее</a>
+
+                <a href="{{route('product',[$laptop->firm->name,$laptop->id])}}" class="btn btn-default" role="button">Подробнее</a>
                 <input type="hidden" name="_token" value="iWPSJmrwREnYkC3cgrYdqrCAqRrCdbP2w7r1O4rk">
                 @csrf
             </form>
             <p></p>
         </div>
-        
+
     </div>
 </div>

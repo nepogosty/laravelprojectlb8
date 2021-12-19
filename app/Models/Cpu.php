@@ -8,7 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Cpu extends Model
 {
     use HasFactory;
+    protected $primaryKey = 'id_cpu';
+    protected $table ='cpus';
     public function cpusLaptops(){
-        return $this->hasMany('App\Models\Laptop');
+        return $this->hasMany(Laptop::class,'id_cpu');
     }
 }

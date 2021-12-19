@@ -20,9 +20,9 @@ class MainController extends Controller
         return view('firms',compact('firms'));
 
     }
-    public function product($product){
+    public function product($firm,$id){
 
-
+        $product=Laptop::where('id',$id)->first();
         return view('product',['product'=>$product]);
 
     }
