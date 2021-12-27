@@ -6,7 +6,12 @@
 
 
         </div>
-        <img src="http://img.mvideo.ru/Big/30057502bb.jpg" alt="iPhone X 64GB">
+        @if($laptop->image[0]=='h')
+           <div class="mt-5 mb-5"> <img src="{{ $laptop->image }}" height="150px"></div>
+        @endif
+        @if($laptop->image[0]!='h')
+            <div class="mt-5 mb-5"><img src="{{ Storage::url($laptop->image) }}" height="150px"></div>
+        @endif
         <div class="caption" >
             <div style="height: 75px">
                 <h3>{{$laptop->name}}</h3>

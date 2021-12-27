@@ -28,6 +28,7 @@
                             <path d="M0 12h16v.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5V12z"/>
                         </svg> GamingLaptop
                     </a></li>
+
                 <li><a href="{{route('index')}}" class="nav-link px-2 text-white">Все товары</a></li>
                 <li><a href="{{route('firms')}}" class="nav-link px-2 text-white">Производители</a></li>
                 <li><a href="{{route('basket')}}" class="nav-link px-2 text-white">Корзина</a></li>
@@ -42,7 +43,13 @@
                     <button type="button" class="btn btn-warning"><a href="{{route('register')}}" >Зарегистрироваться</a></button>
                 @endguest
                 @auth
-                    <button type="button" class="btn btn-warning"><a href="{{route('home')}}" >Администрирование</a></button>
+                    @if(Auth::user()->isAdmin())
+                            <button type="button" class="btn btn-warning"><a href="{{route('home')}}" >Администрирование</a></button>
+                        @else
+                            <button type="button" class="btn btn-warning"><a href="{{route('orders.index')}}" >Мои заказы</a></button>
+                        @endif
+
+
                     <button type="button" class="btn btn-warning"><a href="{{route('get-logout')}}" >Выйти</a></button>
                 @endauth
             </div>

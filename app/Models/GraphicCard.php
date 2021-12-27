@@ -13,4 +13,6 @@ class GraphicCard extends Model
     public function grapic_cardLaptops(){
         return $this->hasMany(Laptop::class,'id_gc');
     }
+    protected $fillable = ['name'];
+    public $timestamps=false;
 }

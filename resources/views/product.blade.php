@@ -1,4 +1,4 @@
-@extends('master', ['file'=>'product'])
+@extends('layouts.master', ['file'=>'product'])
 @section('content')
 
 
@@ -7,11 +7,15 @@
         <h2>{{$product->firm->name}}</h2>
         <h2></h2>
         <p>Цена: <b>{{$product->price}} ₽</b></p>
-    {{--<div style="width: 100px; height: 200px "><img src="http://img.mvideo.ru/Big/30057502bb.jpg"></div>
---}}
+        @if($product->image[0]=='h')
+            <td><img src="{{ $product->image }}" height="240px"></td>
+        @endif
+        @if($product->image[0]!='h')
+            <td><img src="{{ Storage::url($product->image) }}" height="240px"></td>
+        @endif
     <p>SSD: {{$product->SSD}}</p>
     <p>RAM: {{$product->RAM}}</p>
-
+        <p>RAM: {{$product->RAM}}</p>
     <p>CPU: {{$product->cpu->name}}, {{$product->cpu->countCores}}, {{$product->cpu->frequency}} </p>
     <p>Видеокарта: {{$product->gc->name}}</p>
 
@@ -22,9 +26,11 @@
         </div>
     @endforeach
 
-    <form action="http://internet-shop.tmweb.ru/basket/add/1" method="POST">
+    <form action="{{route('basket-add', $product)}}" method="POST">
         <button type="submit" class="btn btn-success" role="button">Добавить в корзину</button>
 
-        <input type="hidden" name="_token" value="iWPSJmrwREnYkC3cgrYdqrCAqRrCdbP2w7r1O4rk">        </form>
+        <input type="hidden" name="_token" value="iWPSJmrwREnYkC3cgrYdqrCAqRrCdbP2w7r1O4rk">
+        @csrf
+    </form>
 </div>
 @endsection

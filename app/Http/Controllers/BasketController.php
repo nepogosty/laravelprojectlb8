@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Laptop;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -72,6 +73,11 @@ class BasketController extends Controller
 
         }else{
             $order->laptops()->attach($id_laptop);
+        }
+
+        if(Auth::check()){
+            $order->user_id=Auth::id();
+            $order->save();
         }
         $laptop=Laptop::find($id_laptop);
         session()->flash('success','Добавлен товар: '.$laptop->name );

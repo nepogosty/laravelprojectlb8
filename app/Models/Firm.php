@@ -14,4 +14,8 @@ class Firm extends Model
         return $this->hasMany(Laptop::class,'id_firm');
 
     }
+    public $timestamps=false;
+    protected $fillable = ['name', 'description'];
+
+
 }

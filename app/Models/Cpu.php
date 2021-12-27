@@ -13,4 +13,7 @@ class Cpu extends Model
     public function cpusLaptops(){
         return $this->hasMany(Laptop::class,'id_cpu');
     }
+    protected $fillable = ['name', 'countCores', 'frequency'];
+
+    public $timestamps=false;
 }

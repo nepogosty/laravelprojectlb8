@@ -14,4 +14,6 @@ class Reviews extends Model
     public function laptops(){
         return $this->belongsTo(Laptop::class, 'id_gc');
     }
+    protected $fillable = ['rating', 'review', 'id_laptop'];
+    public $timestamps=false;
 }

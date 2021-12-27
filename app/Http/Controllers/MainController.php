@@ -6,13 +6,18 @@ use App\Models\Firm;
 use App\Models\Laptop;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
+use App\service\ParserService;
+
 
 class MainController extends Controller
 {
     public function index(){
        // $products=Laptop::get();
         $laptops=Laptop::get();
-        return view('index',compact('laptops'));
+
+       // echo  ParserService::parser();
+
+       return view('index',compact('laptops'));
 
     }
     public function firms(){

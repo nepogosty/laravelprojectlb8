@@ -1,16 +1,16 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
 
     <div class="starter-template">
         @foreach($firms as $firm)
-            <div class="panel">
+            <div class="panel mt-5 mb-5">
                 <a href="/{{$firm->name}}">
-                    <img width="200px" src="https://static.acer.com/up/Resource/Libraries/Acer/4448/images/logo.svg">
+
                     <h2>{{$firm->name}}</h2>
                 </a>
-                <p>
+                {{--<p>
                     {{$firm->description}}
-                </p>
+                </p>--}}
             </div>
         @endforeach
 

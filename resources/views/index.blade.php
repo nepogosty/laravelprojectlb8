@@ -1,8 +1,8 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
     <div class="starter-template">
         <h1>Все товары</h1>
-        <form method="GET" action="http://internet-shop.tmweb.ru">
+        {{--<form method="GET" action="http://internet-shop.tmweb.ru">
             <div class="filters row">
                 <div class="col-sm-6 col-md-3 ">
                     <label cal for="price_from">Цена от
@@ -29,7 +29,7 @@
                     <a href="http://internet-shop.tmweb.ru" class="btn btn-warning">Сброс</a>
                 </div>
             </div>
-        </form>
+        </form>--}}
         <div class="row pb-5">
             @foreach($laptops as $laptop)
                 @include('card',compact('laptop'))

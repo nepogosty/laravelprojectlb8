@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('content')
     <div class="starter-template">
         <h1>
@@ -6,7 +6,9 @@
 
         </h1>
         <p>
-           MSI славится хорошей производительностью по доступным ценам, хороший выбор!
+
+            {{$firm->description}}
+
         </p>
         <div class="row">
             @foreach($firm->laptops as $laptop)

@@ -1,4 +1,4 @@
-@extends('master')
+@extends('layouts.master')
 @section('title','Корзина')
 @section('content')
 
@@ -22,7 +22,12 @@
                         <tr>
                             <td>
                                 <a href="{{route('product',[$laptop->firm->name,$laptop->id])}}">
-                                    <img height="56px" src="http://img.mvideo.ru/Big/30057502bb.jpg">
+                                    @if($laptop->image[0]=='h')
+                                        <img src="{{ $laptop->image }}" height="40px">
+                                    @endif
+                                    @if($laptop->image[0]!='h')
+                                        <img src="{{ Storage::url($laptop->image) }}" height="40px">
+                                    @endif
                                     {{$laptop->name}}
                                 </a>
                             </td>

@@ -40,4 +40,18 @@ class Laptop extends Model
         }
        return price;
     }
+    protected $fillable = ['name',
+        'href',
+        'price',
+        'bonuses',
+        'rating',
+        'SSD',
+        'RAM',
+        'image',
+        'code',
+        'id_firm',
+        'id_cpu',
+        'id_gc'];
+    public $timestamps=false;
+
 }
